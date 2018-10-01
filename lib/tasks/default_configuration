@@ -18,7 +18,7 @@ RSpec.configure do |config|
       request_body_parameters: request.env['action_dispatch.request.parameters'].except('controller', 'action'),
       response_headers: response.headers,
       response_status: response.status,
-      response_body: ActiveSupport::JSON.decode(response.body)
+      response_body: response.body == "" ? response.body : ActiveSupport::JSON.decode(response.body)
     )
     end
   end
